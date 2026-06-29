@@ -66,7 +66,7 @@ const TrackingPortal = () => {
     if (!delivery) return;
 
     // Connect to local websocket client
-    const newSocket = io(window.location.origin, {
+    const newSocket = io(import.meta.env.VITE_SOCKET_URL, {
       transports: ['websocket', 'polling']
     });
 
