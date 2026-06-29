@@ -114,7 +114,6 @@ const deliverySchema = new mongoose.Schema(
 );
 
 // Indexing for faster lookups by tracking ID and driver assignments
-deliverySchema.index({ trackingId: 1 });
 deliverySchema.index({ assignedDriver: 1 });
 deliverySchema.index({ status: 1 });
 

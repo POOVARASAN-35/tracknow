@@ -45,7 +45,6 @@ const transactionSchema = new mongoose.Schema(
   }
 );
 
-transactionSchema.index({ transactionId: 1 });
 transactionSchema.index({ customer: 1 });
 transactionSchema.index({ status: 1 });
 

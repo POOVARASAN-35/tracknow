@@ -43,7 +43,6 @@ const refundSchema = new mongoose.Schema(
   }
 );
 
-refundSchema.index({ refundId: 1 });
 refundSchema.index({ customer: 1 });
 
 module.exports = mongoose.model('Refund', refundSchema);

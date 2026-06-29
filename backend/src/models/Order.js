@@ -84,7 +84,6 @@ const orderSchema = new mongoose.Schema(
 );
 
 // Indexes
-orderSchema.index({ orderId: 1 });
 orderSchema.index({ customer: 1 });
 orderSchema.index({ status: 1 });
 

@@ -79,7 +79,6 @@ const invoiceSchema = new mongoose.Schema(
   }
 );
 
-invoiceSchema.index({ invoiceId: 1 });
 invoiceSchema.index({ customer: 1 });
 invoiceSchema.index({ status: 1 });
 
