@@ -74,7 +74,7 @@ const CustomerBillingLog = ({ currentThemeMode = 'dark' }) => {
 
   // Socket.io Real-time alerts
   useEffect(() => {
-    const socket = io(window.location.origin, {
+    const socket = io(import.meta.env.VITE_SOCKET_URL, {
       transports: ['websocket', 'polling']
     });
 

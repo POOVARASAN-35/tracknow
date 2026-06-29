@@ -17,7 +17,7 @@ const TrackingMap = ({ activeDelivery, currentThemeMode = 'dark' }) => {
       setLiveLocation(activeDelivery.liveLocation);
     }
 
-    const socket = io(window.location.origin, {
+    const socket = io(import.meta.env.VITE_SOCKET_URL, {
       transports: ['websocket', 'polling']
     });
 

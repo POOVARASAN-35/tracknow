@@ -100,7 +100,7 @@ const CustomerDashboard = () => {
 
   // Set up socket listener for live alerts
   useEffect(() => {
-    const socket = io(window.location.origin, {
+    const socket = io(import.meta.env.VITE_SOCKET_URL, {
       transports: ['websocket', 'polling']
     });
 

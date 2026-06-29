@@ -25,7 +25,7 @@ export const SocketProvider = ({ children }) => {
 
     // Connect to websocket gateway
     // In production, we point to root window location (proxy handled by Nginx)
-    const newSocket = io(window.location.origin, {
+    const newSocket = io(import.meta.env.VITE_SOCKET_URL, {
       auth: {
         token: accessToken
       },
