@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios from '../../api/axios';
 
-const API_URL = '/api/auth';
+const API_URL = '/auth';
 
 // Helper to get initial state
 const getInitialUser = () => {
