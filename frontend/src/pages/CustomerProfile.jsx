@@ -116,7 +116,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const fetchAddresses = async () => {
     try {
-      const response = await api.get('/api/customer/addresses', {
+      const response = await api.get('/customer/addresses', {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
@@ -256,7 +256,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
     try {
       if (editingAddress) {
-        const response = await api.put(`/api/customer/addresses/${editingAddress.id}`, {
+        const response = await api.put(`/customer/addresses/${editingAddress.id}`, {
           label: addrLabel,
           text: addrText
         }, {
@@ -266,7 +266,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
           setAddresses(response.data.data.map(mapDbAddressToUi));
         }
       } else {
-        const response = await api.post('/api/customer/addresses', {
+        const response = await api.post('/customer/addresses', {
           label: addrLabel,
           text: addrText,
           isDefault: addresses.length === 0
@@ -286,7 +286,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const handleDeleteAddress = async (id) => {
     try {
-      const response = await api.delete(`/api/customer/addresses/${id}`, {
+      const response = await api.delete(`/customer/addresses/${id}`, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
@@ -300,7 +300,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const handleSetDefaultAddress = async (id) => {
     try {
-      const response = await api.put(`/api/customer/addresses/${id}/default`, {}, {
+      const response = await api.put(`/customer/addresses/${id}/default`, {}, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
