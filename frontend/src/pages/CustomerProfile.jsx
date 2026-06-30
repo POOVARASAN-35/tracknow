@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
+import api from '../api/axios';
 import { updateUser } from '../store/slices/authSlice';
 import {
   Box,
@@ -116,7 +116,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const fetchAddresses = async () => {
     try {
-      const response = await axios.get('/api/customer/addresses', {
+      const response = await api.get('/api/customer/addresses', {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
@@ -129,7 +129,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const fetchPaymentMethods = async () => {
     try {
-      const response = await axios.get('/api/billing/payment-methods', {
+      const response = await api.get('/api/billing/payment-methods', {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
@@ -144,7 +144,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('/api/customer/profile', {
+        const response = await api.get('/api/customer/profile', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -184,7 +184,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
   const handlePersonalSave = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put('/api/customer/profile', profileData, {
+      const response = await api.put('/api/customer/profile', profileData, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
@@ -212,7 +212,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
   const handleProfileCardSave = async (newData) => {
     try {
       const mergedData = { ...profileData, ...newData };
-      const response = await axios.put('/api/customer/profile', mergedData, {
+      const response = await api.put('/api/customer/profile', mergedData, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
@@ -256,7 +256,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
     try {
       if (editingAddress) {
-        const response = await axios.put(`/api/customer/addresses/${editingAddress.id}`, {
+        const response = await api.put(`/api/customer/addresses/${editingAddress.id}`, {
           label: addrLabel,
           text: addrText
         }, {
@@ -266,7 +266,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
           setAddresses(response.data.data.map(mapDbAddressToUi));
         }
       } else {
-        const response = await axios.post('/api/customer/addresses', {
+        const response = await api.post('/api/customer/addresses', {
           label: addrLabel,
           text: addrText,
           isDefault: addresses.length === 0
@@ -286,7 +286,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const handleDeleteAddress = async (id) => {
     try {
-      const response = await axios.delete(`/api/customer/addresses/${id}`, {
+      const response = await api.delete(`/api/customer/addresses/${id}`, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
@@ -300,7 +300,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const handleSetDefaultAddress = async (id) => {
     try {
-      const response = await axios.put(`/api/customer/addresses/${id}/default`, {}, {
+      const response = await api.put(`/api/customer/addresses/${id}/default`, {}, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
@@ -327,7 +327,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
         isDefault: newCard.isDefault
       };
       
-      const response = await axios.post('/api/billing/payment-methods', dbPayload, {
+      const response = await api.post('/api/billing/payment-methods', dbPayload, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
@@ -341,7 +341,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const handleDeleteCard = async (id) => {
     try {
-      const response = await axios.delete(`/api/billing/payment-methods/${id}`, {
+      const response = await api.delete(`/api/billing/payment-methods/${id}`, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
@@ -355,7 +355,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const handleSetDefaultCard = async (id) => {
     try {
-      const response = await axios.put(`/api/billing/payment-methods/${id}/default`, {}, {
+      const response = await api.put(`/api/billing/payment-methods/${id}/default`, {}, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
