@@ -11,7 +11,7 @@ import QRCode from '@mui/icons-material/QrCode';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+import api from '../api/axios';
 import { updateUser, setLogoutConfirmOpen } from '../../store/slices/authSlice';
 
 const ProfileCard = ({ user, currentThemeMode = 'dark', onSaveProfile }) => {
@@ -328,7 +328,7 @@ const ProfileCard = ({ user, currentThemeMode = 'dark', onSaveProfile }) => {
                   const base64String = reader.result;
                   
                   // 1. Upload base64 image to backend uploads API
-                  const uploadRes = await axios.post('/api/upload', { image: base64String }, {
+                  const uploadRes = await api.post('/upload', { image: base64String }, {
                     headers: {
                       Authorization: `Bearer ${accessToken}`
                     }
@@ -338,7 +338,7 @@ const ProfileCard = ({ user, currentThemeMode = 'dark', onSaveProfile }) => {
                     const imageUrl = uploadRes.data.url;
                     
                     // 2. Persist the image url inside user customer profile
-                    const saveRes = await axios.put('/api/customer/profile', { profileImage: imageUrl }, {
+                    const saveRes = await api.put('/customer/profile', { profileImage: imageUrl }, {
                       headers: {
                         Authorization: `Bearer ${accessToken}`
                       }
