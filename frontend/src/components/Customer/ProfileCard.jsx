@@ -11,7 +11,7 @@ import QRCode from '@mui/icons-material/QrCode';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import api from '../api/axios';
+import api from '../../api/axios';
 import { updateUser, setLogoutConfirmOpen } from '../../store/slices/authSlice';
 
 const ProfileCard = ({ user, currentThemeMode = 'dark', onSaveProfile }) => {
