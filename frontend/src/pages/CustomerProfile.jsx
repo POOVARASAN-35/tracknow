@@ -56,7 +56,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const { user, accessToken } = useSelector((state) => state.auth);
   const { deliveries = [] } = useSelector((state) => state.deliveries);
-  const { orders } = useSelector((state) => state.orders);
+  const { orders = [] } = useSelector((state) => state.orders);
 
   // Profile Page Center Sub-Tab state
   const [subTab, setSubTab] = useState(0);
@@ -410,7 +410,8 @@ TOTAL BILL PAID: $${((matched?.totalAmount || 25.00) + 5.00).toFixed(2)}
   const totalDelivered = deliveries.filter(d => d.status === 'delivered').length;
   const totalCancelled = deliveries.filter(d => d.status === 'cancelled').length;
   const totalActive = deliveries.filter(d => ['assigned', 'accepted', 'picked_up', 'in_transit'].includes(d.status)).length;
-  const spentSum = orders.reduce((acc, curr) => acc + curr.totalAmount, 0) || 128.50;
+ const spentSum =
+  (orders || []).reduce((acc, curr) => acc + (curr.totalAmount || 0), 0);
 
   const getStepIndex = (status) => {
     switch (status) {
