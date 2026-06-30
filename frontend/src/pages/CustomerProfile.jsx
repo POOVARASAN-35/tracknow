@@ -55,7 +55,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
   const dispatch = useDispatch();
 
   const { user, accessToken } = useSelector((state) => state.auth);
-  const { deliveries } = useSelector((state) => state.deliveries);
+  const { deliveries = [] } = useSelector((state) => state.deliveries);
   const { orders } = useSelector((state) => state.orders);
 
   // Profile Page Center Sub-Tab state
