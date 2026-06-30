@@ -129,7 +129,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const fetchPaymentMethods = async () => {
     try {
-      const response = await api.get('/api/billing/payment-methods', {
+      const response = await api.get('/billing/payment-methods', {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
@@ -327,7 +327,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
         isDefault: newCard.isDefault
       };
       
-      const response = await api.post('/api/billing/payment-methods', dbPayload, {
+      const response = await api.post('/billing/payment-methods', dbPayload, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
@@ -341,7 +341,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const handleDeleteCard = async (id) => {
     try {
-      const response = await api.delete(`/api/billing/payment-methods/${id}`, {
+      const response = await api.delete(`/billing/payment-methods/${id}`, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
@@ -355,7 +355,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
 
   const handleSetDefaultCard = async (id) => {
     try {
-      const response = await api.put(`/api/billing/payment-methods/${id}/default`, {}, {
+      const response = await api.put(`/billing/payment-methods/${id}/default`, {}, {
         headers: { Authorization: `Bearer ${accessToken}` }
       });
       if (response.data?.success) {
