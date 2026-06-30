@@ -59,7 +59,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const CustomerDashboard = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const { deliveries } = useSelector((state) => state.deliveries);
+  const { deliveries = [] } = useSelector((state) => state.deliveries);
   const { products, cart } = useSelector((state) => state.cart);
   const { orders } = useSelector((state) => state.orders);
 
