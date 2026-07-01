@@ -144,7 +144,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await api.get('/api/customer/profile', {
+        const response = await api.get('/customer/profile', {
           headers: {
             Authorization: `Bearer ${accessToken}`
           }
@@ -184,7 +184,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
   const handlePersonalSave = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.put('/api/customer/profile', profileData, {
+      const response = await api.put('/customer/profile', profileData, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
@@ -212,7 +212,7 @@ const CustomerProfile = ({ currentThemeMode = 'dark' }) => {
   const handleProfileCardSave = async (newData) => {
     try {
       const mergedData = { ...profileData, ...newData };
-      const response = await api.put('/api/customer/profile', mergedData, {
+      const response = await api.put('/customer/profile', mergedData, {
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
